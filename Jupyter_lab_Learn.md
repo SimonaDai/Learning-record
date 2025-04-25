@@ -1,4 +1,4 @@
-# jupyterlab的安装与使用
+# JupyterLab 的安装与使用
 
 ---
 
