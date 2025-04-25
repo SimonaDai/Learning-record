@@ -204,6 +204,88 @@ git checkout <commit>^ -- <file>
 # 检出指定提交中文件的版本到工作目录（旧版Git）  
 # 或者（Git 2.23+）  
 git restore --source=<commit> --staged --worktree --
-
-
 ```
+
+
+
+在 Git 中，将分支合并到 `main` 分支的步骤如下。以下是详细的操作流程：
+
+### 1. **切换到 `main` 分支**
+   在合并之前，需要确保你在 `main` 分支上。
+   ```bash
+   git checkout main
+   ```
+
+### 2. **拉取最新的 `main` 分支内容**
+   确保 `main` 分支是最新的，避免合并时出现冲突。
+   ```bash
+   git pull origin main
+   ```
+
+### 3. **合并分支到 `main`**
+   假设你的分支名称是 `feature-branch`，使用以下命令将其合并到 `main` 分支：
+   ```bash
+   git merge feature-branch
+   ```
+
+   - 如果分支之间没有冲突，Git 会自动完成合并。
+   - 如果有冲突，Git 会提示你解决冲突。解决冲突后，需要手动提交更改：
+     ```bash
+     git add .
+     git commit -m "解决合并冲突"
+     ```
+
+### 4. **推送合并后的 `main` 分支到远程仓库**
+   合并完成后，将更新后的 `main` 分支推送到远程仓库：
+   ```bash
+   git push origin main
+   ```
+
+### 5. **删除本地分支（可选）**
+   如果不再需要该分支，可以删除它：
+   ```bash
+   git branch -d feature-branch
+   ```
+
+### 6. **删除远程分支（可选）**
+   如果远程仓库中也有该分支，可以删除它：
+   ```bash
+   git push origin --delete feature-branch
+   ```
+
+### **通过 Pull Request (PR) 合并（推荐）**
+如果你使用的是 GitHub、GitLab 或其他远程仓库服务，可以通过 **Pull Request**（PR）来合并分支到 `main` 分支。以下是流程：
+
+1. **在远程仓库创建 PR**
+   - 在 GitHub/GitLab 上，导航到你的分支。
+   - 点击 "Create Pull Request"，选择将分支合并到 `main`。
+
+2. **审查 PR**
+   - 在 PR 页面上，可以查看更改内容、运行测试、请求代码审查等。
+
+3. **合并 PR**
+   - 审查通过后，点击 "Merge Pull Request" 按钮完成合并。
+
+4. **本地同步**
+   - 合并后，本地需要拉取最新的 `main` 分支：
+     ```bash
+     git checkout main
+     git pull origin main
+     ```
+
+#### **总结**
+- **本地合并**：直接使用 `git merge`。
+- **远程合并**：通过 PR 完成，适合团队协作。
+
+
+
+
+
+
+
+
+
+
+
+
+
